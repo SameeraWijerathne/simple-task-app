@@ -1,5 +1,5 @@
 import express, {json} from 'express';
-import {router} from "./api/task-controller.ts";
+import {router} from "./api/task-controller";
 import cors from 'cors';
 
 const app = express();
