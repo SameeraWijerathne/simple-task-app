@@ -1,7 +1,7 @@
 <div class="px-3 d-flex gap-2">
-  <input class="form-control text-center" type="text"
+  <input #txt class="form-control text-center" type="text"
   placeholder="Enter a new task">
-  <button class="btn btn-primary">Add</button>
+  <button class="btn btn-primary" (click)="saveTask(txt)">Add</button>
 </div>
 <ng-container *ngFor="let task of taskList">
   <div class="px-3 py-2">

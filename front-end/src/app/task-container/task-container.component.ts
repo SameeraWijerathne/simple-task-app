@@ -16,4 +16,19 @@ export class TaskContainerComponent {
         this.taskList = taskList;
       });
   }
+
+  saveTask(txt: HTMLInputElement) {
+    if (!txt.value.trim()) {
+      txt.select();
+      return;
+    }
+
+    this.http.post<Task>('http://localhost:8080/app/api/v1/tasks',
+      new Task(0, txt.value.trim(), "NOT_COMPLETED"))
+      .subscribe(task => {
+        this.taskList.push(task);
+        txt.value = '';
+        txt.focus();
+      });
+  }
 }
