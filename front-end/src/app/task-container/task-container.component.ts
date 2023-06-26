@@ -17,7 +17,7 @@ export class TaskContainerComponent {
       });
   }
 
-  saveTask(txt: HTMLInputElement) {
+  saveTask(txt: HTMLInputElement): void {
     if (!txt.value.trim()) {
       txt.select();
       return;
@@ -30,5 +30,13 @@ export class TaskContainerComponent {
         txt.value = '';
         txt.focus();
       });
+  }
+
+  deleteTask(task: Task): void {
+    this.http.delete(`http://localhost:8080/app/api/v1/tasks/${task.id}`)
+      .subscribe(data =>{
+        const index: number = this.taskList.indexOf(task);
+        this.taskList.splice(index, 1);
+    });
   }
 }
